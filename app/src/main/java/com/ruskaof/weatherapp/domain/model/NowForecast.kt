@@ -1,6 +1,5 @@
 package com.ruskaof.weatherapp.domain.model
 
-import com.google.gson.annotations.SerializedName
 import com.ruskaof.weatherapp.data.dto.NowForecastDto
 
 data class NowForecast(
@@ -17,7 +16,7 @@ data class NowForecast(
     val location: String,
     val longitude: Double,
     val region: String,
-    val tempC: Int,
+    val tempC: Double,
     val tempF: Double,
     val timezone: String,
     val windDegree: Int,

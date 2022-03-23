@@ -31,7 +31,7 @@ data class NowForecastDto(
     @SerializedName("region")
     val region: String,
     @SerializedName("temp_c")
-    val tempC: Int,
+    val tempC: Double,
     @SerializedName("temp_f")
     val tempF: Double,
     @SerializedName("timezone")
