@@ -18,4 +18,13 @@ interface M3oWeatherApi {
     suspend fun getNowForecast(
         @Body nowForecastPostDto: NowForecastPostDto
     ): NowForecastDto
+
+    @Headers(
+        "Content-Type: application/json",
+        "Authorization: Bearer ${Constants.M3O_API_TOKEN}"
+    )
+    @POST("/v1/weather/Forecast")
+    suspend fun getFullForecast(
+        @Body fullPostDto: FullPostDto
+    ): FullForecastDto
 }

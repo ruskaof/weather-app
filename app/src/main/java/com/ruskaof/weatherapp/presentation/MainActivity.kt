@@ -35,7 +35,9 @@ class MainActivity : ComponentActivity() {
             }
 
             val navController = rememberNavController()
-            MainTheme() {
+            MainTheme(
+                darkTheme = isDarkMode.value
+            ) {
                 NavHost(
                     navController = navController,
                     startDestination = Screen.MainScreen.route

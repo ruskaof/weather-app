@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ruskaof.weatherapp.common.Constants
 import com.ruskaof.weatherapp.common.Resource
 import com.ruskaof.weatherapp.domain.use_case.WeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,24 +16,52 @@ import javax.inject.Inject
 class MainScreenViewModel @Inject constructor(
     private val weatherUseCase: WeatherUseCase
 ) : ViewModel() {
-    private val _textState = mutableStateOf("lll")
-    val textState: State<String> = _textState
+    private val _weatherNowState =
+        mutableStateOf(NowForecastState(Constants.NOW_FORECAST_EXAMPLE, false))
+    val weatherNowState: State<NowForecastState> = _weatherNowState
+
+    private val _weatherFullState =
+        mutableStateOf(FullForecastState(Constants.FULL_FORECAST_EXAMPLE, false))
+    val weatherFullState: State<FullForecastState> = _weatherFullState
 
     init {
-        getWeather("Moscow")
+        getCurrentWeather("Saint Petersburg")
+        getFullForecast(7, "Saint Petersburg")
     }
 
-    fun getWeather(location: String) {
+    fun getCurrentWeather(location: String) {
         weatherUseCase.invokeGetNowForecast(location = location).onEach {
             when (it) {
                 is Resource.Success -> {
-                    _textState.value = it.data.toString()
+                    _weatherNowState.value =
+                        NowForecastState(it.data ?: Constants.NOW_FORECAST_EXAMPLE, false)
                 }
                 is Resource.Error -> {
-                    _textState.value = it.message ?: "???"
+                    _weatherNowState.value =
+                        NowForecastState(Constants.NOW_FORECAST_EXAMPLE, false)
                 }
                 is Resource.Loading -> {
-                    _textState.value = "loading"
+                    _weatherNowState.value =
+                        NowForecastState(Constants.NOW_FORECAST_EXAMPLE, true)
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun getFullForecast(days: Int, location: String) {
+        weatherUseCase.invokeGetFullForecast(days = days, location = location).onEach {
+            when (it) {
+                is Resource.Success -> {
+                    _weatherFullState.value =
+                        FullForecastState(it.data ?: Constants.FULL_FORECAST_EXAMPLE, false)
+                }
+                is Resource.Error -> {
+                    _weatherFullState.value =
+                        FullForecastState(Constants.FULL_FORECAST_EXAMPLE, false)
+                }
+                is Resource.Loading -> {
+                    _weatherFullState.value =
+                        FullForecastState(Constants.FULL_FORECAST_EXAMPLE, true)
                 }
             }
         }.launchIn(viewModelScope)

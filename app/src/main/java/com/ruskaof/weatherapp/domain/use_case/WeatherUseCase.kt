@@ -1,7 +1,9 @@
 package com.ruskaof.weatherapp.domain.use_case
 
 import com.ruskaof.weatherapp.common.Resource
+import com.ruskaof.weatherapp.domain.model.FullForecast
 import com.ruskaof.weatherapp.domain.model.NowForecast
+import com.ruskaof.weatherapp.domain.model.toFullForecast
 import com.ruskaof.weatherapp.domain.model.toNowForecast
 import com.ruskaof.weatherapp.domain.repository.WeatherRepository
 import kotlinx.coroutines.flow.Flow
@@ -27,6 +29,27 @@ class WeatherUseCase @Inject constructor(
         } catch (e: IOException) {
             emit(
                 Resource.Error<NowForecast>(
+                    e.localizedMessage
+                        ?: "Could not reach the server. Please check your internet connection"
+                )
+            )
+        }
+    }
+
+    fun invokeGetFullForecast(days: Int, location: String): Flow<Resource<FullForecast>> = flow {
+        try {
+            emit(Resource.Loading<FullForecast>())
+            val loginResponse = repository.getFullForecast(days, location).toFullForecast()
+            emit(Resource.Success<FullForecast>(loginResponse))
+        } catch (e: HttpException) {
+            emit(
+                Resource.Error<FullForecast>(
+                    e.localizedMessage ?: "An unexpected error occurred"
+                )
+            )
+        } catch (e: IOException) {
+            emit(
+                Resource.Error<FullForecast>(
                     e.localizedMessage
                         ?: "Could not reach the server. Please check your internet connection"
                 )

@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Shape
 
 data class AppColors(
     val primaryBackground: Color,
+    val secondaryBackground: Color
 )
 
 data class AppShapes(
@@ -14,7 +15,10 @@ data class AppShapes(
 )
 
 data class AppTypography(
-    val primaryTextStyle: androidx.compose.ui.text.TextStyle
+    val biggerTextStyle: androidx.compose.ui.text.TextStyle,
+    val primaryTextStyle: androidx.compose.ui.text.TextStyle,
+    val smallerTextStyle: androidx.compose.ui.text.TextStyle,
+    val tinyTextStyle: androidx.compose.ui.text.TextStyle
 )
 
 

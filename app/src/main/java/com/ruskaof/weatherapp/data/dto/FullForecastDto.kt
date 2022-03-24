@@ -7,7 +7,7 @@ data class FullForecastDto(
     @SerializedName("country")
     val country: String,
     @SerializedName("forecast")
-    val forecast: List<Forecast>,
+    val forecastDto: List<ForecastDto>,
     @SerializedName("latitude")
     val latitude: Double,
     @SerializedName("local_time")

@@ -3,7 +3,7 @@ package com.ruskaof.weatherapp.data.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class Forecast(
+data class ForecastDto(
     @SerializedName("avg_temp_c")
     val avgTempC: Double,
     @SerializedName("avg_temp_f")
@@ -25,7 +25,7 @@ data class Forecast(
     @SerializedName("max_wind_mph")
     val maxWindMph: Double,
     @SerializedName("min_temp_c")
-    val minTempC: Int,
+    val minTempC: Double,
     @SerializedName("min_temp_f")
     val minTempF: Double,
     @SerializedName("sunrise")
