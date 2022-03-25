@@ -7,7 +7,9 @@ import androidx.compose.ui.graphics.Shape
 
 data class AppColors(
     val primaryBackground: Color,
-    val secondaryBackground: Color
+    val cardBackground: Color,
+    val circleColor1: Color,
+    val circleColor2: Color
 )
 
 data class AppShapes(

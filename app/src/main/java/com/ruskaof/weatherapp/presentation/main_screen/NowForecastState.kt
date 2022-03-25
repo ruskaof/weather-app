@@ -4,5 +4,6 @@ import com.ruskaof.weatherapp.domain.model.NowForecast
 
 data class NowForecastState(
     val nowForecast: NowForecast,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val isError: Boolean = false
 )

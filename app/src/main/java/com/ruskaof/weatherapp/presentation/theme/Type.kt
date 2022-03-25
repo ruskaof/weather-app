@@ -8,17 +8,33 @@ import androidx.compose.ui.unit.sp
 
 // TODO: make a light theme colors
 val lightTextTypography = AppTypography(
-    mainTemperatureDegreeStyle = TextStyle(color = Color.White, fontSize = 50.sp),
-    locationTextStyle = TextStyle(color = Color.White, fontSize = 40.sp),
-    inListTemperatureDegreeStyle = TextStyle(color = Color.White, fontSize = 30.sp),
-    inListDateStyle = TextStyle(color = Color.White, fontSize = 20.sp),
+    mainTemperatureDegreeStyle = TextStyle(
+        color = Color.Black,
+        fontSize = 100.sp,
+        fontWeight = FontWeight.ExtraLight
+    ),
+    locationTextStyle = TextStyle(
+        color = Color.Black,
+        fontSize = 30.sp,
+        fontWeight = FontWeight.SemiBold,
+    ),
+    inListTemperatureDegreeStyle = TextStyle(
+        color = Color.Black,
+        fontSize = 50.sp,
+        fontWeight = FontWeight.ExtraLight
+    ),
+    inListDateStyle = TextStyle(
+        color = Color.Black,
+        fontSize = 30.sp,
+        fontWeight = FontWeight.Light
+    ),
     nowWeatherConditionStyle = TextStyle(
-        color = Color.White,
+        color = Color.Black,
         fontSize = 30.sp,
         fontWeight = FontWeight.Thin
     ),
     inListWeatherConditionStyle = TextStyle(
-        color = Color.White,
+        color = Color.Black,
         fontSize = 15.sp,
         fontWeight = FontWeight.Thin
     )
@@ -26,32 +42,32 @@ val lightTextTypography = AppTypography(
 
 val darkTextTypography = AppTypography(
     mainTemperatureDegreeStyle = TextStyle(
-        color = Color.White,
+        color = Color(0xCCFFFFFF),
         fontSize = 100.sp,
         fontWeight = FontWeight.ExtraLight
     ),
     locationTextStyle = TextStyle(
-        color = Color.White,
+        color = Color(0xCCFFFFFF),
         fontSize = 30.sp,
         fontWeight = FontWeight.SemiBold,
     ),
     inListTemperatureDegreeStyle = TextStyle(
-        color = Color.White,
+        color = Color(0xCCFFFFFF),
         fontSize = 50.sp,
         fontWeight = FontWeight.ExtraLight
     ),
     inListDateStyle = TextStyle(
-        color = Color.White,
+        color = Color(0xCCFFFFFF),
         fontSize = 30.sp,
         fontWeight = FontWeight.Light
     ),
     nowWeatherConditionStyle = TextStyle(
-        color = Color.White,
+        color = Color(0xCCFFFFFF),
         fontSize = 30.sp,
         fontWeight = FontWeight.Thin
     ),
     inListWeatherConditionStyle = TextStyle(
-        color = Color.White,
+        color = Color(0xCCFFFFFF),
         fontSize = 15.sp,
         fontWeight = FontWeight.Thin
     )

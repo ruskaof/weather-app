@@ -38,7 +38,11 @@ class MainScreenViewModel @Inject constructor(
                 }
                 is Resource.Error -> {
                     _weatherNowState.value =
-                        NowForecastState(Constants.NOW_FORECAST_EXAMPLE, false)
+                        NowForecastState(
+                            Constants.NOW_FORECAST_EXAMPLE,
+                            isLoading = false,
+                            isError = true
+                        )
                 }
                 is Resource.Loading -> {
                     _weatherNowState.value =
@@ -57,7 +61,7 @@ class MainScreenViewModel @Inject constructor(
                 }
                 is Resource.Error -> {
                     _weatherFullState.value =
-                        FullForecastState(Constants.FULL_FORECAST_EXAMPLE, false)
+                        FullForecastState(Constants.FULL_FORECAST_EXAMPLE, false, isError = true)
                 }
                 is Resource.Loading -> {
                     _weatherFullState.value =

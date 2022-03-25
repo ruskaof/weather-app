@@ -4,5 +4,6 @@ import com.ruskaof.weatherapp.domain.model.FullForecast
 
 data class FullForecastState(
     val fullForecast: FullForecast,
-    val isLoading: Boolean
+    val isLoading: Boolean = false,
+    val isError: Boolean = false
 )

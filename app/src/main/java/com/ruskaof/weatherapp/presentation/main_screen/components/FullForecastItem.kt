@@ -22,10 +22,10 @@ fun FullForecastItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(5.dp),
+            .padding(10.dp),
         shape = AppTheme.shapes.fullForecastCardShape,
         elevation = 5.dp,
-        backgroundColor = AppTheme.colors.secondaryBackground
+        backgroundColor = AppTheme.colors.cardBackground
     ) {
         Row(
             modifier = Modifier
