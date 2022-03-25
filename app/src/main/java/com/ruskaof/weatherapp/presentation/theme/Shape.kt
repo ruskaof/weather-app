@@ -1,7 +1,7 @@
 package com.ruskaof.weatherapp.presentation.theme
 
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CutCornerShape
 
 val defaultShapes = AppShapes(
-    defaultShape = RoundedCornerShape(4)
+    fullForecastCardShape = CutCornerShape(10)
 )

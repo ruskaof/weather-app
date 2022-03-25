@@ -11,12 +11,12 @@ data class AppColors(
 )
 
 data class AppShapes(
-    val defaultShape: Shape
+    val fullForecastCardShape: Shape
 )
 
 data class AppTypography(
     val mainTemperatureDegreeStyle: androidx.compose.ui.text.TextStyle,
-    val primaryTextStyle: androidx.compose.ui.text.TextStyle,
+    val locationTextStyle: androidx.compose.ui.text.TextStyle,
     val inListTemperatureDegreeStyle: androidx.compose.ui.text.TextStyle,
     val inListDateStyle: androidx.compose.ui.text.TextStyle,
     val nowWeatherConditionStyle: androidx.compose.ui.text.TextStyle,

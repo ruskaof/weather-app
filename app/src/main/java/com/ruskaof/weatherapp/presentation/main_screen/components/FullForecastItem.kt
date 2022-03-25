@@ -23,6 +23,7 @@ fun FullForecastItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(5.dp),
+        shape = AppTheme.shapes.fullForecastCardShape,
         elevation = 5.dp,
         backgroundColor = AppTheme.colors.secondaryBackground
     ) {
@@ -50,7 +51,7 @@ fun FullForecastItem(
                 )
             }
             Text(
-                modifier = Modifier.weight(2f),
+                modifier = Modifier.weight(2.4f),
                 text = forecast.avgTempC.roundToInt().toString() + "°C",
                 style = AppTheme.typography.inListTemperatureDegreeStyle,
                 textAlign = TextAlign.Right

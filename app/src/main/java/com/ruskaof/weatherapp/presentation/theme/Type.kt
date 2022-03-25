@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.sp
 // TODO: make a light theme colors
 val lightTextTypography = AppTypography(
     mainTemperatureDegreeStyle = TextStyle(color = Color.White, fontSize = 50.sp),
-    primaryTextStyle = TextStyle(color = Color.White, fontSize = 40.sp),
+    locationTextStyle = TextStyle(color = Color.White, fontSize = 40.sp),
     inListTemperatureDegreeStyle = TextStyle(color = Color.White, fontSize = 30.sp),
     inListDateStyle = TextStyle(color = Color.White, fontSize = 20.sp),
     nowWeatherConditionStyle = TextStyle(
@@ -30,7 +30,11 @@ val darkTextTypography = AppTypography(
         fontSize = 100.sp,
         fontWeight = FontWeight.ExtraLight
     ),
-    primaryTextStyle = TextStyle(color = Color.White, fontSize = 30.sp),
+    locationTextStyle = TextStyle(
+        color = Color.White,
+        fontSize = 30.sp,
+        fontWeight = FontWeight.SemiBold,
+    ),
     inListTemperatureDegreeStyle = TextStyle(
         color = Color.White,
         fontSize = 50.sp,
