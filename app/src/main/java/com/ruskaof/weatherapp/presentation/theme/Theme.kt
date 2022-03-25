@@ -15,10 +15,12 @@ data class AppShapes(
 )
 
 data class AppTypography(
-    val biggerTextStyle: androidx.compose.ui.text.TextStyle,
+    val mainTemperatureDegreeStyle: androidx.compose.ui.text.TextStyle,
     val primaryTextStyle: androidx.compose.ui.text.TextStyle,
-    val smallerTextStyle: androidx.compose.ui.text.TextStyle,
-    val tinyTextStyle: androidx.compose.ui.text.TextStyle
+    val inListTemperatureDegreeStyle: androidx.compose.ui.text.TextStyle,
+    val inListDateStyle: androidx.compose.ui.text.TextStyle,
+    val nowWeatherConditionStyle: androidx.compose.ui.text.TextStyle,
+    val inListWeatherConditionStyle: androidx.compose.ui.text.TextStyle
 )
 
 

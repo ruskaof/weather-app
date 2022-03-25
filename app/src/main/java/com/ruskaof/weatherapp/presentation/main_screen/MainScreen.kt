@@ -37,9 +37,7 @@ fun MainScreen(
             WeatherNowComponent(viewModel.weatherNowState.value) {
                 viewModel.getCurrentWeather("Saint Petersburg")
             }
-            WeatherFullComponent(viewModel.weatherFullState.value.fullForecast) {
-                viewModel.getFullForecast(7, "Saint Petersburg")
-            }
+            WeatherFullComponent(viewModel.weatherFullState.value.fullForecast)
         }
     }
 }
