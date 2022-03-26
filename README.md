@@ -1,4 +1,4 @@
-# WORK IN PROGRESS
+# Weather app
 A simple weather app that was done using:
  - Jetpack Compose
  - Dagger hilt
@@ -6,8 +6,8 @@ A simple weather app that was done using:
  - Clean architecture
  - Free [m3o api](https://m3o.com/)
 
-Everything is done but for good and nice ui
-
+The app is working properly but I am still improving it.
+The `Constants` file is not on gitHub due to safety reasons.
 
 ![photo_2022-03-27_00-54-40 (2)](https://user-images.githubusercontent.com/91731881/160258305-3163fb16-c3e7-4bb3-8885-98fd243abd21.jpg)
 
