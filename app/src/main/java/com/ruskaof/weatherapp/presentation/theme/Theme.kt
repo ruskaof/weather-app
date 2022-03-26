@@ -22,7 +22,7 @@ data class AppTypography(
     val inListTemperatureDegreeStyle: androidx.compose.ui.text.TextStyle,
     val inListDateStyle: androidx.compose.ui.text.TextStyle,
     val nowWeatherConditionStyle: androidx.compose.ui.text.TextStyle,
-    val inListWeatherConditionStyle: androidx.compose.ui.text.TextStyle
+    val inListWeatherConditionStyle: androidx.compose.ui.text.TextStyle,
 )
 
 
@@ -41,7 +41,6 @@ object AppTheme{
     val typography: AppTypography
         @Composable
         get() = LocalAppTypography.current
-
 
     val LocalAppColors = staticCompositionLocalOf<AppColors> {
         error("No colors provided")

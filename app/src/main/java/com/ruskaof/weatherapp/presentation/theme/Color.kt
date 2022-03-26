@@ -13,6 +13,6 @@ val lightColorPallet = AppColors(
 val darkColorPallet = AppColors(
     primaryBackground = Color(0xFF202020),
     cardBackground = Color(0xFF2C2C2C),
-    circleColor1 = Color(0xFFE1BEE7),
-    circleColor2 = Color(0xFFE1BEE7)
+    circleColor1 = Color(0xFF805E86),
+    circleColor2 = Color(0xFF6E5072)
 )

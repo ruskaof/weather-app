@@ -26,7 +26,7 @@ class MainScreenViewModel @Inject constructor(
 
     init {
         getCurrentWeather("Saint Petersburg")
-        getFullForecast(7, "Saint Petersburg")
+        getFullForecast(4, "Saint Petersburg")
     }
 
     fun getCurrentWeather(location: String) {

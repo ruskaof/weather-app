@@ -1,5 +1,7 @@
 package com.ruskaof.weatherapp.presentation.main_screen
 
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -7,7 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -24,18 +26,27 @@ import com.ruskaof.weatherapp.presentation.theme.AppTheme
 fun MainScreen(
     viewModel: MainScreenViewModel = hiltViewModel()
 ) {
-    val circleColor1 = AppTheme.colors.circleColor1;
-    val circleColor2 = AppTheme.colors.circleColor2;
+    var circle1SizeState by remember { mutableStateOf(0.dp) }
+    var circle2SizeState by remember { mutableStateOf(0.dp) }
+    val circle1Size by animateDpAsState(targetValue = circle1SizeState, animationSpec = tween(1000))
+    val circle2Size by animateDpAsState(targetValue = circle2SizeState, animationSpec = tween(1000))
+    val circleColor1 = AppTheme.colors.circleColor1
+    val circleColor2 = AppTheme.colors.circleColor2
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(AppTheme.colors.primaryBackground)
             .drawBehind {
-                drawCircle(color = circleColor1, center = Offset.Zero, radius = 500.dp.toPx())
+                drawCircle(
+                    color = circleColor1,
+                    center = Offset.Zero,
+                    radius = circle1Size.toPx()
+                )
                 drawCircle(
                     color = circleColor2,
                     center = Offset(size.width, size.height),
-                    radius = 300.dp.toPx()
+                    radius = circle2Size.toPx()
                 )
             }
     ) {
@@ -60,9 +71,12 @@ fun MainScreen(
                 )
             }
         } else {
-            WeatherNowComponent(viewModel.weatherNowState.value) {
-                viewModel.getCurrentWeather("Saint Petersburg")
-            }
+            circle1SizeState = 500.dp
+            circle2SizeState = 300.dp
+            WeatherNowComponent(viewModel.weatherNowState.value)
+//            {
+//                viewModel.getCurrentWeather("Saint Petersburg")
+//            }
             WeatherFullComponent(viewModel.weatherFullState.value.fullForecast)
         }
     }

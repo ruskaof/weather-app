@@ -19,6 +19,8 @@ import kotlin.math.roundToInt
 fun FullForecastItem(
     forecast: Forecast
 ) {
+
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
