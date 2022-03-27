@@ -2,11 +2,10 @@ package com.ruskaof.weatherapp.presentation.main_screen
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -14,10 +13,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.ruskaof.weatherapp.R
 import com.ruskaof.weatherapp.presentation.main_screen.components.WeatherFullComponent
 import com.ruskaof.weatherapp.presentation.main_screen.components.WeatherNowComponent
 import com.ruskaof.weatherapp.presentation.theme.AppTheme
@@ -62,6 +64,7 @@ fun MainScreen(
             }
         }
         if (viewModel.weatherFullState.value.isLoading || viewModel.weatherNowState.value.isLoading) {
+
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
@@ -79,5 +82,26 @@ fun MainScreen(
 //            }
             WeatherFullComponent(viewModel.weatherFullState.value.fullForecast)
         }
+    }
+
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp)
+            .size(40.dp),
+        contentAlignment = Alignment.TopEnd
+    ) {
+
+        Image(
+            painter = painterResource(R.drawable.ic_round_refresh_24),
+            modifier = Modifier
+                .size(50.dp)
+                .clickable {
+                    viewModel.getCurrentWeather("Saint Petersburg")
+                },
+            colorFilter = ColorFilter.tint(AppTheme.typography.locationTextStyle.color),
+            contentDescription = "Refresh icon"
+        )
     }
 }
