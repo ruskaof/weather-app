@@ -39,6 +39,8 @@ fun MainScreen(
     var alphaState by remember { mutableStateOf(0f) }
     val alpha by animateFloatAsState(targetValue = alphaState, animationSpec = tween(1000))
 
+    var wasComposedOnce by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -67,7 +69,7 @@ fun MainScreen(
                 )
             }
         }
-        if (viewModel.weatherFullState.value.isLoading || viewModel.weatherNowState.value.isLoading) {
+        if ((viewModel.weatherFullState.value.isLoading || viewModel.weatherNowState.value.isLoading) && !wasComposedOnce) {
 
             Box(
                 modifier = Modifier.fillMaxSize(),
@@ -78,6 +80,7 @@ fun MainScreen(
                 )
             }
         } else {
+            wasComposedOnce = true
             alphaState = 0.8f
             circle1SizeState = 500.dp
             circle2SizeState = 300.dp
@@ -98,6 +101,7 @@ fun MainScreen(
         contentAlignment = Alignment.TopEnd
     ) {
 
+        // TODO: make a rotation animation while loading
         Image(
             painter = painterResource(R.drawable.ic_round_refresh_24),
             modifier = Modifier

@@ -37,16 +37,16 @@ class MainScreenViewModel @Inject constructor(
                         NowForecastState(it.data ?: Constants.NOW_FORECAST_EXAMPLE, false)
                 }
                 is Resource.Error -> {
-                    _weatherNowState.value =
-                        NowForecastState(
-                            Constants.NOW_FORECAST_EXAMPLE,
-                            isLoading = false,
-                            isError = true
-                        )
+                    _weatherNowState.value = _weatherNowState.value.copy(
+                        isLoading = false,
+                        isError = true
+                    )
                 }
                 is Resource.Loading -> {
-                    _weatherNowState.value =
-                        NowForecastState(Constants.NOW_FORECAST_EXAMPLE, true)
+                    _weatherNowState.value = _weatherNowState.value.copy(
+                        isLoading = true,
+                        isError = false
+                    )
                 }
             }
         }.launchIn(viewModelScope)
