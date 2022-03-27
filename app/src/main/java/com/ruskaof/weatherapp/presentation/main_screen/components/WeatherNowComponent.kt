@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.ruskaof.weatherapp.presentation.main_screen.NowForecastState
 import com.ruskaof.weatherapp.presentation.theme.AppTheme
@@ -47,7 +48,10 @@ fun ColumnScope.WeatherNowComponent(
                 colorFilter = ColorFilter.tint(AppTheme.typography.locationTextStyle.color),
                 contentDescription = "Cloud icon"
             )
-            Text(text = " " + nowForecastState.nowForecast.cloud.toString() + "%")
+            Text(
+                text = " " + nowForecastState.nowForecast.cloud.toString() + "%",
+                style = AppTheme.typography.inListWeatherConditionStyle.copy(fontWeight = FontWeight.Normal)
+            )
         }
         Row(
             Modifier
@@ -61,7 +65,8 @@ fun ColumnScope.WeatherNowComponent(
                 contentDescription = "Wind icon"
             )
             Text(
-                text = " " + nowForecastState.nowForecast.windKph.roundToInt().toString() + " km/h"
+                text = " " + nowForecastState.nowForecast.windKph.roundToInt().toString() + " km/h",
+                style = AppTheme.typography.inListWeatherConditionStyle.copy(fontWeight = FontWeight.Normal)
             )
         }
         Row(
@@ -76,7 +81,8 @@ fun ColumnScope.WeatherNowComponent(
                 contentDescription = "Drops icon"
             )
             Text(
-                text = " " + nowForecastState.nowForecast.humidity + " %"
+                text = " " + nowForecastState.nowForecast.humidity + " %",
+                style = AppTheme.typography.inListWeatherConditionStyle.copy(fontWeight = FontWeight.Normal)
             )
         }
 

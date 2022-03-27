@@ -96,7 +96,7 @@ fun MainScreen(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(20.dp)
+            .padding(5.dp)
             .size(40.dp),
         contentAlignment = Alignment.TopEnd
     ) {
