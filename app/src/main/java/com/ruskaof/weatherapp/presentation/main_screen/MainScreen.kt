@@ -1,6 +1,7 @@
 package com.ruskaof.weatherapp.presentation.main_screen
 
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,6 +35,9 @@ fun MainScreen(
     val circle2Size by animateDpAsState(targetValue = circle2SizeState, animationSpec = tween(1000))
     val circleColor1 = AppTheme.colors.circleColor1
     val circleColor2 = AppTheme.colors.circleColor2
+
+    var alphaState by remember { mutableStateOf(0f) }
+    val alpha by animateFloatAsState(targetValue = alphaState, animationSpec = tween(1000))
 
     Column(
         modifier = Modifier
@@ -74,6 +78,7 @@ fun MainScreen(
                 )
             }
         } else {
+            alphaState = 0.8f
             circle1SizeState = 500.dp
             circle2SizeState = 300.dp
             WeatherNowComponent(viewModel.weatherNowState.value)
@@ -100,7 +105,7 @@ fun MainScreen(
                 .clickable {
                     viewModel.getCurrentWeather("Saint Petersburg")
                 },
-            colorFilter = ColorFilter.tint(AppTheme.typography.locationTextStyle.color),
+            colorFilter = ColorFilter.tint(AppTheme.typography.locationTextStyle.color.copy(alpha = alpha)),
             contentDescription = "Refresh icon"
         )
     }
