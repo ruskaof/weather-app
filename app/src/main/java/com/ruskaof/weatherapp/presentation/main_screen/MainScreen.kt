@@ -9,7 +9,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -21,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ruskaof.weatherapp.R
+import com.ruskaof.weatherapp.common.Constants
 import com.ruskaof.weatherapp.presentation.main_screen.components.WeatherFullComponent
 import com.ruskaof.weatherapp.presentation.main_screen.components.WeatherNowComponent
 import com.ruskaof.weatherapp.presentation.theme.AppTheme
@@ -29,17 +31,22 @@ import com.ruskaof.weatherapp.presentation.theme.AppTheme
 fun MainScreen(
     viewModel: MainScreenViewModel = hiltViewModel()
 ) {
-    var circle1SizeState by remember { mutableStateOf(0.dp) }
-    var circle2SizeState by remember { mutableStateOf(0.dp) }
-    val circle1Size by animateDpAsState(targetValue = circle1SizeState, animationSpec = tween(1000))
-    val circle2Size by animateDpAsState(targetValue = circle2SizeState, animationSpec = tween(1000))
+    val circle1Size by animateDpAsState(
+        targetValue = viewModel.circle1SizeState.value,
+        animationSpec = tween(1000)
+    )
+    val circle2Size by animateDpAsState(
+        targetValue = viewModel.circle2SizeState.value,
+        animationSpec = tween(1000)
+    )
     val circleColor1 = AppTheme.colors.circleColor1
     val circleColor2 = AppTheme.colors.circleColor2
 
-    var alphaState by remember { mutableStateOf(0f) }
-    val alpha by animateFloatAsState(targetValue = alphaState, animationSpec = tween(1000))
+    val alpha by animateFloatAsState(
+        targetValue = viewModel.alphaState.value,
+        animationSpec = tween(1000)
+    )
 
-    var wasComposedOnce by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -69,7 +76,7 @@ fun MainScreen(
                 )
             }
         }
-        if ((viewModel.weatherFullState.value.isLoading || viewModel.weatherNowState.value.isLoading) && !wasComposedOnce) {
+        if (viewModel.weatherFullState.value.isLoading || viewModel.weatherNowState.value.isLoading) {
 
             Box(
                 modifier = Modifier.fillMaxSize(),
@@ -80,10 +87,8 @@ fun MainScreen(
                 )
             }
         } else {
-            wasComposedOnce = true
-            alphaState = 0.8f
-            circle1SizeState = 500.dp
-            circle2SizeState = 300.dp
+            viewModel.setAlphaState(0.8f)
+            viewModel.setCirclesSizes(500.dp, 300.dp)
             WeatherNowComponent(viewModel.weatherNowState.value)
 //            {
 //                viewModel.getCurrentWeather("Saint Petersburg")
@@ -101,16 +106,36 @@ fun MainScreen(
         contentAlignment = Alignment.TopEnd
     ) {
 
-        // TODO: make a rotation animation while loading
         Image(
             painter = painterResource(R.drawable.ic_round_refresh_24),
             modifier = Modifier
                 .size(50.dp)
                 .clickable {
-                    viewModel.getCurrentWeather("Saint Petersburg")
+                    viewModel.getCurrentWeather(Constants.locationState.value)
                 },
             colorFilter = ColorFilter.tint(AppTheme.typography.locationTextStyle.color.copy(alpha = alpha)),
             contentDescription = "Refresh icon"
         )
     }
+
+//    // TODO make a dialog for location change
+//    Box(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(5.dp)
+//            .size(40.dp),
+//        contentAlignment = Alignment.TopStart
+//    ) {
+//
+//        Image(
+//            painter = painterResource(R.drawable.ic_baseline_location_city_24),
+//            modifier = Modifier
+//                .size(50.dp)
+//                .clickable {
+//                    viewModel.getCurrentWeather(Constants.locationState.value)
+//                },
+//            colorFilter = ColorFilter.tint(AppTheme.typography.locationTextStyle.color.copy(alpha = alpha)),
+//            contentDescription = "Refresh icon"
+//        )
+//    }
 }

@@ -1,7 +1,10 @@
 package com.ruskaof.weatherapp.presentation.main_screen
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruskaof.weatherapp.common.Constants
@@ -16,6 +19,17 @@ import javax.inject.Inject
 class MainScreenViewModel @Inject constructor(
     private val weatherUseCase: WeatherUseCase
 ) : ViewModel() {
+    private val _locationState: MutableState<String> = Constants.locationState as MutableState
+
+    private val _circle1SizeState = mutableStateOf(0.dp)
+    var circle1SizeState: State<Dp> = _circle1SizeState
+
+    private val _circle2SizeState = mutableStateOf(0.dp)
+    var circle2SizeState: State<Dp> = _circle2SizeState
+
+    private val _alphaState = mutableStateOf(0f)
+    var alphaState: State<Float> = _alphaState
+
     private val _weatherNowState =
         mutableStateOf(NowForecastState(Constants.NOW_FORECAST_EXAMPLE, false))
     val weatherNowState: State<NowForecastState> = _weatherNowState
@@ -25,8 +39,8 @@ class MainScreenViewModel @Inject constructor(
     val weatherFullState: State<FullForecastState> = _weatherFullState
 
     init {
-        getCurrentWeather("Saint Petersburg")
-        getFullForecast(4, "Saint Petersburg")
+        getCurrentWeather(Constants.locationState.value)
+        getFullForecast(4, Constants.locationState.value)
     }
 
     fun getCurrentWeather(location: String) {
@@ -69,5 +83,18 @@ class MainScreenViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun changeLocation(newLocation: String) {
+        _locationState.value = newLocation
+    }
+
+    fun setCirclesSizes(s1: Dp, s2: Dp) {
+        _circle1SizeState.value = s1
+        _circle2SizeState.value = s2
+    }
+
+    fun setAlphaState(x: Float) {
+        _alphaState.value = x
     }
 }
