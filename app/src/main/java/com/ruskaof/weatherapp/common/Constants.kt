@@ -9,8 +9,9 @@ import java.time.LocalDate
 
 object Constants {
     const val BASE_URL = "https://api.m3o.com"
-    const val M3O_API_TOKEN = "your token"
-    val locationState: State<String> = mutableStateOf("Saint Petersburg")
+    const val M3O_API_TOKEN = "your_token"
+    val locationState: State<String> =
+        mutableStateOf("Saint Petersburg") // not really a constant huh
     val NOW_FORECAST_EXAMPLE = NowForecast(
         location = "London",
         region = "City of London, Greater London",

@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ruskaof.weatherapp.R
 import com.ruskaof.weatherapp.common.Constants
+import com.ruskaof.weatherapp.presentation.main_screen.components.ChangeLocationDialog
 import com.ruskaof.weatherapp.presentation.main_screen.components.WeatherFullComponent
 import com.ruskaof.weatherapp.presentation.main_screen.components.WeatherNowComponent
 import com.ruskaof.weatherapp.presentation.theme.AppTheme
@@ -47,6 +48,9 @@ fun MainScreen(
         animationSpec = tween(1000)
     )
 
+    if (viewModel.changeWeatherIsDialogOpen.value) {
+        ChangeLocationDialog(viewModel = viewModel)
+    }
 
     Column(
         modifier = Modifier
@@ -90,9 +94,6 @@ fun MainScreen(
             viewModel.setAlphaState(0.8f)
             viewModel.setCirclesSizes(500.dp, 300.dp)
             WeatherNowComponent(viewModel.weatherNowState.value)
-//            {
-//                viewModel.getCurrentWeather("Saint Petersburg")
-//            }
             WeatherFullComponent(viewModel.weatherFullState.value.fullForecast)
         }
     }
@@ -112,30 +113,30 @@ fun MainScreen(
                 .size(50.dp)
                 .clickable {
                     viewModel.getCurrentWeather(Constants.locationState.value)
+                    viewModel.getFullForecast(4, Constants.locationState.value)
                 },
             colorFilter = ColorFilter.tint(AppTheme.typography.locationTextStyle.color.copy(alpha = alpha)),
             contentDescription = "Refresh icon"
         )
     }
 
-//    // TODO make a dialog for location change
-//    Box(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(5.dp)
-//            .size(40.dp),
-//        contentAlignment = Alignment.TopStart
-//    ) {
-//
-//        Image(
-//            painter = painterResource(R.drawable.ic_baseline_location_city_24),
-//            modifier = Modifier
-//                .size(50.dp)
-//                .clickable {
-//                    viewModel.getCurrentWeather(Constants.locationState.value)
-//                },
-//            colorFilter = ColorFilter.tint(AppTheme.typography.locationTextStyle.color.copy(alpha = alpha)),
-//            contentDescription = "Refresh icon"
-//        )
-//    }
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(5.dp)
+            .size(40.dp),
+        contentAlignment = Alignment.TopStart
+    ) {
+
+        Image(
+            painter = painterResource(R.drawable.ic_baseline_location_city_24),
+            modifier = Modifier
+                .size(50.dp)
+                .clickable {
+                    viewModel.openDialog()
+                },
+            colorFilter = ColorFilter.tint(AppTheme.typography.locationTextStyle.color.copy(alpha = alpha)),
+            contentDescription = "Refresh icon"
+        )
+    }
 }

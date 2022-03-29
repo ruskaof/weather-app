@@ -20,6 +20,10 @@ class MainScreenViewModel @Inject constructor(
     private val weatherUseCase: WeatherUseCase
 ) : ViewModel() {
     private val _locationState: MutableState<String> = Constants.locationState as MutableState
+    val locationState: State<String> = _locationState
+
+    private val _changeWeatherIsDialogOpen = mutableStateOf(false)
+    val changeWeatherIsDialogOpen: State<Boolean> = _changeWeatherIsDialogOpen
 
     private val _circle1SizeState = mutableStateOf(0.dp)
     var circle1SizeState: State<Dp> = _circle1SizeState
@@ -87,6 +91,14 @@ class MainScreenViewModel @Inject constructor(
 
     fun changeLocation(newLocation: String) {
         _locationState.value = newLocation
+    }
+
+    fun openDialog() {
+        _changeWeatherIsDialogOpen.value = true
+    }
+
+    fun closeDialog() {
+        _changeWeatherIsDialogOpen.value = false
     }
 
     fun setCirclesSizes(s1: Dp, s2: Dp) {
