@@ -6,8 +6,6 @@ A simple weather app that was done using:
  - Clean architecture
  - Free [m3o api](https://m3o.com/)
 
-The app is working properly but I am still improving it.
-
 THERE IS NO API KEY IN THIS PACKAGE SO IT WON'T WORK WITHOUT YOU ENTERING IT IN `Constants` file
 
 ![photo_2022-03-27_00-54-40 (2)](https://user-images.githubusercontent.com/91731881/160258305-3163fb16-c3e7-4bb3-8885-98fd243abd21.jpg)
